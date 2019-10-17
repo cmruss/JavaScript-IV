@@ -25,6 +25,14 @@ class Instructor extends Person{
     grade(student, subject){
         return `${student} recieves a perfect score on ${subject}`;
     }
+    adjGrade(student,studentGrade){
+        var min = -20;
+        var max = 20;
+        var random = Math.floor(Math.random()* (+max - +min)) + +min; 
+        var newGrade = studentGrade + random;
+        student.grade = newGrade;
+        return `${student.name}'s grade has been adjusted to ${newGrade}`;
+    }
 }
 
 class Student extends Person{
@@ -33,6 +41,7 @@ class Student extends Person{
         this.previousBackground = props.previousBackground;
         this.className = props.className;
         this.favSubjects = props.favSubjects;
+        this.grade = props.grade 
     }
     listsSubjects(subjects){
         for (let i =0; i < subjects.length; i++){
@@ -108,6 +117,7 @@ const me = new Student({
     previousBackground: 'Vehicle Prototyping',
     className: 'WEB25',
     favSubjects: ['HTML', 'CSS', 'JavaScript'],
+    grade: 96,
 })
 
 const smyth = new Student({
@@ -117,6 +127,7 @@ const smyth = new Student({
     previousBackground: 'Pewabic Pottery',
     className: 'WEB25',
     favSubjects: ['HTML', 'C#', 'Java'],
+    grade: 100,
 })
 
 
@@ -133,3 +144,4 @@ console.log(manser.catchPhrase);
 console.log(russell.catchPhrase);
 console.log(russell.grade(me.name, mulder.favLanguage));
 console.log(skully.catchPhrase);
+console.log(skully.adjGrade(me,me.grade));
